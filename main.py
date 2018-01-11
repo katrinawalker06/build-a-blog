@@ -32,13 +32,14 @@ def blog():
 
 @app.route("/newpost",methods=['POST', 'GET'])
 def home():
+    blogtitle_error=""
+    newblog_error=""
+    blogtitle=request.form['blogtitle']
+    newblog=request.form['newblog']
+    
     if request.method == "POST":
         return render_template('/base.html', blogtitle=blogtitle,newblog=newblog)
     else:
-        blogtitle_error=""
-        newblog_error=""
-        blogtitle=request.form['blogtitle']
-        newblog=request.form['newblog']
         if blogtitle == "":
             blogtitle_error = "enter title"
 
