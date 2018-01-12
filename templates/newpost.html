@@ -12,7 +12,7 @@
             </tr>
             <tr>
                 <td>
-                    <input type="text" name="blogtitle" value={{blogtitle}} >
+                    <input type="text" name="blogtitle" value={{blogtitle}}/ >
                     <p class="error">{{blogtitle_error}}</p>
 
                 </td>
@@ -28,13 +28,13 @@
                     <input type="text" name="newblog" value="{{newblog}}" >
                     <p class="error">{{newblog_error}}</p>
                 </td>
-            </tr>
-            <tr>
-                <td>
-                    <input type="submit" name="submit_entry" />
-                    <p class="error">{{verify_password_error}}</p>
-                </td>
-            </tr>
+           </tr>
+           <tr>
+               <td>
+                   <input type="submit" value="newblog" >
+
+               </td>
+           </tr>
         </table>
       </form>
 {% endblock %}

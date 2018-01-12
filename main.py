@@ -24,36 +24,35 @@ class Blog (db.Model):
 
 
 
-@app.route("/blog",methods=['POST', 'GET'])
+@app.route("/blog",methods=['POST','GET'])
 def blog():
     blogs = Blog.query.all()
-    return render_template("/main.html",blogs=blogs)
+    return render_template("base.html",blogs=blogs)
 
 
-@app.route("/newpost",methods=['POST', 'GET'])
+
+@app.route("/newpost",methods=['POST','GET'])
 def home():
-    blogtitle_error=""
-    newblog_error=""
-    blogtitle=request.form['blogtitle']
-    newblog=request.form['newblog']
-    
     if request.method == "POST":
         return render_template('/base.html', blogtitle=blogtitle,newblog=newblog)
     else:
+        blogtitle_error=""
+        newblog_error=""
+        blogtitle=request.form['blogtitle']
+        newblog=request.form['newblog']
         if blogtitle == "":
             blogtitle_error = "enter title"
 
         if newblog == "":
             newblog_error = "enter blog"
 
-        if blogtitle_error != "" or newblog_error != "" :
-            return render_template('/base.html',blogtitle_error=blogtitle_error, newblog_error=newblog_error, blogtitle=blogtitle,newblog=newblog)
-        else:
-            new_blog = Blog(blogtitle, newblog)
-            db.session.add(new_blog)
+        if not blogtitle_error and not newblog_error:
+            post_new= blog(blogtitle,newblog)
+            db.session.add(post_new)
             db.session.commit()
-            return redirect("/blog={0}".format(title.id))
-      
+            title_id=post_new.id
+            return redirect('/blog?id={0}'.format(title_id))
+                            
 @app.route("/")
 def root():
     return render_template ('/base.html')
@@ -61,9 +60,9 @@ def root():
 
 @app.route("/detail", methods=["GET"])
 def blogpostnew():
-    blogspot= Blog.query.get("title.id")
-    blog_post=request.args.get("blog")
-    return render_template("/blog.html",blog=blog_post,title=title)
+    blog= Blog.query.filterby("title.id")
+    blog_post=request.args.get("blogspot")
+    return render_template("/blog.html",blog=blog,title=title)
 
 
 if __name__=='__main__':
