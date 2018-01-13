@@ -3,7 +3,7 @@
     <div class="blog"></div>
     <div class="title"></div>
     <h1> Add a Blog Entry</h1>
-    <form method="post" action="blog">
+    <form method="post" action="newpost">
         <table>
             <tr>
                 <td>
@@ -12,7 +12,7 @@
             </tr>
             <tr>
                 <td>
-                    <input type="text" name="blogtitle" value={{blogtitle}}/ >
+                    <input type="text" name="blogtitle" value={{blogtitle}}>
                     <p class="error">{{blogtitle_error}}</p>
 
                 </td>
@@ -24,17 +24,16 @@
             </tr>
             <tr>
                 <td>
-
-                    <input type="text" name="newblog" value="{{newblog}}" >
+                    <input type="text" name="newblog" value={{newblog}}>
                     <p class="error">{{newblog_error}}</p>
                 </td>
-           </tr>
-           <tr>
-               <td>
-                   <input type="submit" value="newblog" >
+            </tr>
+            <tr>
+                <td>
+                    <input type="submit" value="newblog">
 
-               </td>
-           </tr>
+                </td>
+            </tr>
         </table>
       </form>
 {% endblock %}
