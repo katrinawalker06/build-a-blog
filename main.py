@@ -51,7 +51,7 @@ def home():
            new_blog = Blog(blogtitle, newblog)
            db.session.add(new_blog)
            db.session.commit()
-           return redirect("/blog?id={0}".format(new_blog.id))
+           return redirect("/detail?id={0}".format(new_blog.id))
     
 
 @app.route("/detail", methods=["GET"])
